@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconciler AI | Live Dashboard Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/main.js"></script>
+</head>
+<body>
+
+<!-- ══ PASSWORD GATE ══ -->
+<div class="pw-gate" id="pwGate">
+  <div class="pw-gate-box">
+    <svg class="pw-gate-logo" viewBox="0 0 40 40" fill="none">
+      <rect width="40" height="40" rx="10" fill="url(#pgl1)"/>
+      <path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.95"/>
+      <circle cx="18.5" cy="16.5" r="3.5" fill="url(#pgl2)" opacity="0.85"/>
+      <defs>
+        <linearGradient id="pgl1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#00E5C8"/><stop offset="1" stop-color="#1A6EFF"/></linearGradient>
+        <linearGradient id="pgl2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00E5C8"/><stop offset="1" stop-color="#00B8A0"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="pw-gate-title">Reconciler AI Dashboard</div>
+    <div class="pw-gate-sub">This dashboard is password protected. Enter your access key to continue.</div>
+    <input type="password" class="pw-gate-input" id="pwInput" placeholder="Enter access password" autocomplete="off" />
+    <button class="pw-gate-btn" id="pwSubmit">Unlock Dashboard →</button>
+    <div class="pw-gate-err" id="pwErr"></div>
+    <div class="pw-gate-hint">Need access? <a href="contact.html" style="color:var(--teal);">Contact our team</a></div>
+  </div>
+</div>
+
+<div id="noise" aria-hidden="true"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg class="nav-logo-svg" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="url(#dl1)"/>
+        <path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.95"/>
+        <circle cx="18.5" cy="16.5" r="3.5" fill="url(#dl2)" opacity="0.85"/>
+        <defs>
+          <linearGradient id="dl1" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#1A6EFF"/></linearGradient>
+          <linearGradient id="dl2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#00B8A0"/></linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-wordmark">Reconciler<span> AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#interactive">Try Sandbox</a></li>
+      <li><a href="demo.html">Dashboard</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-glass btn-sm">Contact</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">Request Access →</a>
+    </div>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-progress"></div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div data-aos="fade-up">
+      <div style="margin-bottom:18px;">
+        <span class="badge bt"><span class="bdot"></span>Live Prototype</span>
+        <span class="badge bg" style="margin-left:8px;"><span class="bdot"></span>Bank of Baroda + Tally</span>
+      </div>
+      <h1>Reconciliation <span class="gi" style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;">Dashboard</span></h1>
+      <p style="margin-top:14px;color:var(--mist);font-size:1.05rem;line-height:1.78;max-width:600px;">
+        A full preview of Reconciler AI's financial verification platform. Click any sidebar tab to explore different modules — Bank, Ledger, GST, TDS, and Reports.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FULL DASHBOARD -->
+<section class="section-pad" style="background:var(--void);">
+<div class="container">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:12px;" data-aos="fade-up">
+    <div>
+      <span class="eyebrow">Live Interface</span>
+      <h2 style="font-family:var(--font-h);font-size:1.9rem;font-weight:700;letter-spacing:-0.03em;color:var(--white);">Financial Overview — February 2026</h2>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-outline btn-sm">Apply for Access</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Export Report
+      </a>
+    </div>
+  </div>
+
+  <!-- Dashboard shell with clickable sidebar -->
+  <div class="dashboard-shell" data-aos="fade-up" data-aos-delay="80">
+    <!-- Topbar -->
+    <div class="dash-topbar">
+      <div class="d-dot" style="background:#FF5F57"></div>
+      <div class="d-dot" style="background:#FFBD2E"></div>
+      <div class="d-dot" style="background:#28C840"></div>
+      <span class="dash-topbar-label">reconciler.ai · BoB + Tally · FY 2025–26</span>
+      <div class="dash-topbar-right">
+        <div class="live-sig"><span class="live-dot"></span>Live Sync</div>
+        <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--mist);">Last: 2 min ago</span>
+      </div>
+    </div>
+
+    <!-- Body: sidebar + main content -->
+    <div class="dash-body">
+      <!-- SIDEBAR — clickable tabs -->
+      <div class="dash-side" id="dashSidebar">
+        <span class="d-side-lbl">Modules</span>
+        <div class="d-nav-item active" data-view="overview"><span class="d-icon">🏠</span> Financial Overview</div>
+        <div class="d-nav-item" data-view="bank"><span class="d-icon">📊</span> Reconciliation</div>
+        <div class="d-nav-item" data-view="bank-stmt"><span class="d-icon">🏦</span> Bank Statements</div>
+        <div class="d-nav-item" data-view="ledger"><span class="d-icon">📒</span> Ledger View</div>
+        <div class="d-nav-item" data-view="gst"><span class="d-icon">🧾</span> GST Module</div>
+        <div class="d-nav-item" data-view="tds"><span class="d-icon">🔐</span> TDS Tracker</div>
+        <span class="d-side-lbl">Output</span>
+        <div class="d-nav-item" data-view="reports"><span class="d-icon">📄</span> Reports</div>
+        <div class="d-nav-item" data-view="audit"><span class="d-icon">📋</span> Audit Logs</div>
+        <span class="d-side-lbl">Config</span>
+        <div class="d-nav-item" data-view="settings"><span class="d-icon">⚙️</span> Settings</div>
+      </div>
+
+      <!-- MAIN AREA — swappable views -->
+      <div class="dash-main">
+
+        <!-- VIEW: Financial Overview (default) -->
+        <div class="dash-view active" id="dv-overview">
+          <!-- Summary KPIs -->
+          <div class="kpi-grid">
+            <div class="sk-card c-teal"><div class="sk-bar"></div><span class="sk-label">Total Volume</span><span class="sk-val" data-count="12.4" data-prefix="₹" data-suffix=" Cr">₹12.4 Cr</span><span class="sk-meta">Feb 2026 · All modules</span></div>
+            <div class="sk-card sk-default"><div class="sk-bar" style="background:var(--fog)"></div><span class="sk-label">Match Rate</span><span class="sk-val" data-count="96.8" data-suffix="%">96.8%</span><span class="sk-meta up">↑ 1.2% vs Jan</span></div>
+            <div class="sk-card c-gold"><div class="sk-bar"></div><span class="sk-label">GST ITC Gap</span><span class="sk-val" data-count="15000" data-prefix="₹">₹15,000</span><span class="sk-meta down">Needs resolution</span></div>
+            <div class="sk-card c-azure"><div class="sk-bar"></div><span class="sk-label">TDS 26AS Match</span><span class="sk-val" data-count="92.5" data-suffix="%">92.5%</span><span class="sk-meta up">₹78.2K verified</span></div>
+          </div>
+
+          <!-- Overview grid of all modules -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;">
+
+            <!-- Bank Reconciliation Summary -->
+            <div class="gst-card" style="cursor:pointer;" onclick="document.querySelector('[data-view=bank]').click()">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:9px;"><span style="font-size:1.1rem;">📊</span><span style="font-weight:700;color:var(--white);font-size:0.88rem;">Bank Reconciliation</span></div>
+                <span class="stag ok">96.8% matched</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                <div style="text-align:center;background:rgba(0,229,200,0.05);border-radius:8px;padding:10px 6px;"><div style="font-family:var(--font-h);font-weight:700;color:var(--teal);font-size:1rem;">1,783</div><div style="font-size:0.68rem;color:var(--mist);margin-top:3px;">Matched</div></div>
+                <div style="text-align:center;background:rgba(255,184,48,0.05);border-radius:8px;padding:10px 6px;"><div style="font-family:var(--font-h);font-weight:700;color:var(--gold);font-size:1rem;">39</div><div style="font-size:0.68rem;color:var(--mist);margin-top:3px;">Difference</div></div>
+                <div style="text-align:center;background:rgba(255,85,101,0.05);border-radius:8px;padding:10px 6px;"><div style="font-family:var(--font-h);font-weight:700;color:var(--danger);font-size:1rem;">20</div><div style="font-size:0.68rem;color:var(--mist);margin-top:3px;">Pending</div></div>
+              </div>
+              <div style="margin-top:12px;font-size:0.74rem;color:var(--teal);display:flex;align-items:center;gap:5px;">Click to explore module →</div>
+            </div>
+
+            <!-- Ledger Summary -->
+            <div class="gst-card" style="cursor:pointer;" onclick="document.querySelector('[data-view=ledger]').click()">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:9px;"><span style="font-size:1.1rem;">📒</span><span style="font-weight:700;color:var(--white);font-size:0.88rem;">Ledger Matching</span></div>
+                <span class="stag ok">98.2% rate</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                <div style="text-align:center;background:rgba(0,229,200,0.05);border-radius:8px;padding:10px 6px;"><div style="font-family:var(--font-h);font-weight:700;color:var(--teal);font-size:1rem;">3,682</div><div style="font-size:0.68rem;color:var(--mist);margin-top:3px;">Verified</div></div>
+                <div style="text-align:center;background:rgba(255,184,48,0.05);border-radius:8px;padding:10px 6px;"><div style="font-family:var(--font-h);font-weight:700;color:var(--gold);font-size:1rem;">112</div><div style="font-size:0.68rem;color:var(--mist);margin-top:3px;">Flagged</div></div>
+                <div style="text-align:center;background:rgba(77,158,255,0.05);border-radius:8px;padding:10px 6px;"><div style="font-family:var(--font-h);font-weight:700;color:var(--azure);font-size:1rem;">53</div><div style="font-size:0.68rem;color:var(--mist);margin-top:3px;">Pending</div></div>
+              </div>
+              <div style="margin-top:12px;font-size:0.74rem;color:var(--teal);display:flex;align-items:center;gap:5px;">Click to explore module →</div>
+            </div>
+
+            <!-- GST Summary -->
+            <div class="gst-card" style="cursor:pointer;" onclick="document.querySelector('[data-view=gst]').click()">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:9px;"><span style="font-size:1.1rem;">🧾</span><span style="font-weight:700;color:var(--white);font-size:0.88rem;">GST Compliance</span></div>
+                <span class="stag warn">⚠ ITC Gap</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <div style="background:rgba(0,229,200,0.05);border-radius:8px;padding:10px 12px;"><div style="font-size:0.68rem;color:var(--mist);margin-bottom:4px;">GSTR-3B Declared</div><div style="font-family:var(--font-h);font-weight:700;color:var(--white);font-size:0.98rem;">₹4.82 L</div></div>
+                <div style="background:rgba(255,85,101,0.05);border-radius:8px;padding:10px 12px;"><div style="font-size:0.68rem;color:var(--mist);margin-bottom:4px;">ITC Mismatch</div><div style="font-family:var(--font-h);font-weight:700;color:var(--danger);font-size:0.98rem;">₹15,000</div></div>
+              </div>
+              <div style="margin-top:12px;font-size:0.74rem;color:var(--teal);">Click to explore module →</div>
+            </div>
+
+            <!-- TDS Summary -->
+            <div class="gst-card" style="cursor:pointer;" onclick="document.querySelector('[data-view=tds]').click()">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:9px;"><span style="font-size:1.1rem;">🔐</span><span style="font-weight:700;color:var(--white);font-size:0.88rem;">TDS Tracker</span></div>
+                <span class="stag ok">92.5% matched</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <div style="background:rgba(0,229,200,0.05);border-radius:8px;padding:10px 12px;"><div style="font-size:0.68rem;color:var(--mist);margin-bottom:4px;">26AS Verified</div><div style="font-family:var(--font-h);font-weight:700;color:var(--teal);font-size:0.98rem;">₹78,200</div></div>
+                <div style="background:rgba(255,184,48,0.05);border-radius:8px;padding:10px 12px;"><div style="font-size:0.68rem;color:var(--mist);margin-bottom:4px;">Unmatched</div><div style="font-family:var(--font-h);font-weight:700;color:var(--gold);font-size:0.98rem;">₹6,300</div></div>
+              </div>
+              <div style="margin-top:12px;font-size:0.74rem;color:var(--teal);">Click to explore module →</div>
+            </div>
+          </div>
+
+          <!-- Recent Activity Strip -->
+          <div style="margin-top:14px;background:var(--glass);border:1px solid var(--g-border);border-radius:var(--r-sm);padding:14px 18px;">
+            <div style="font-family:var(--font-mono);font-size:0.66rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--mist);margin-bottom:12px;">Recent AI Activity · Last 24 hours</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;"></span><span style="font-size:0.81rem;color:var(--snow);">AI Matching completed — 1,842 entries processed</span></div><span class="stag ok">96.8%</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;"></span><span style="font-size:0.81rem;color:var(--snow);">GST ITC mismatch flagged — Blue Tech India</span></div><span class="stag warn">₹13,700</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--danger);display:inline-block;"></span><span style="font-size:0.81rem;color:var(--snow);">TDS 26AS mismatch — Metro Services India</span></div><span class="stag err">₹4,000</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--azure);display:inline-block;"></span><span style="font-size:0.81rem;color:var(--snow);">Bank Statement Report generated &amp; ready</span></div><span class="stag ok">Done</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW: Bank Reconciliation -->
+        <div class="dash-view" id="dv-bank" style="display:none">
+          <div class="kpi-grid">
+            <div class="sk-card sk-default"><div class="sk-bar" style="background:var(--fog)"></div><span class="sk-label">Total Volume</span><span class="sk-val" data-count="12.4" data-prefix="₹" data-suffix=" Cr">₹12.4 Cr</span><span class="sk-meta">Feb 2026</span></div>
+            <div class="sk-card c-teal"><div class="sk-bar"></div><span class="sk-label">Auto-Matched</span><span class="sk-val" data-count="96.8" data-suffix="%">96.8%</span><span class="sk-meta up">↑ 1.2% vs Jan</span></div>
+            <div class="sk-card c-gold"><div class="sk-bar"></div><span class="sk-label">Differences</span><span class="sk-val" data-count="2.1" data-suffix="%">2.1%</span><span class="sk-meta down">↓ 0.4% improved</span></div>
+            <div class="sk-card c-danger"><div class="sk-bar"></div><span class="sk-label">Pending</span><span class="sk-val" data-count="1.1" data-suffix="%">1.1%</span><span class="sk-meta">Needs action</span></div>
+          </div>
+          <div class="s-table-wrap">
+            <div class="s-table-head"><h3>Transaction Reconciliation Log</h3><span>Showing 6 of 1,842 · Feb 2026</span></div>
+            <table>
+              <thead><tr><th>Date</th><th>Party Name</th><th>Bank (₹)</th><th>Ledger (₹)</th><th>Type</th><th>Δ Variance</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="color:var(--mist)">20-02-2026</td><td><strong>ABC Traders Pvt Ltd</strong></td><td>45,200</td><td>45,200</td><td class="mono" style="color:var(--teal)">CR</td><td class="mono" style="color:var(--teal)">₹0</td><td><span class="stag ok">✓ Matched</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">21-02-2026</td><td><strong>XYZ Suppliers &amp; Co.</strong></td><td>18,750</td><td>18,500</td><td class="mono" style="color:var(--mist)">DR</td><td class="mono" style="color:var(--gold)">₹250</td><td><span class="stag warn">⚠ Difference</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">22-02-2026</td><td><strong>Global Tech Solutions</strong></td><td>92,000</td><td>92,000</td><td class="mono" style="color:var(--teal)">CR</td><td class="mono" style="color:var(--teal)">₹0</td><td><span class="stag ok">✓ Matched</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">22-02-2026</td><td><strong>Metro Services India</strong></td><td>7,500</td><td>—</td><td class="mono" style="color:var(--mist)">DR</td><td class="mono" style="color:var(--danger)">₹7,500</td><td><span class="stag err">⏳ Pending</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">23-02-2026</td><td><strong>Bharat Industries Ltd.</strong></td><td>1,24,300</td><td>1,24,300</td><td class="mono" style="color:var(--teal)">CR</td><td class="mono" style="color:var(--teal)">₹0</td><td><span class="stag ok">✓ Matched</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">23-02-2026</td><td><strong>GST / GSTR-2B / NOV-24</strong></td><td>34,560</td><td>32,100</td><td class="mono" style="color:var(--azure)">TAX</td><td class="mono" style="color:var(--gold)">₹2,460</td><td><span class="stag warn">⚠ Difference</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: Bank Statements -->
+        <div class="dash-view" id="dv-bank-stmt" style="display:none">
+          <div class="kpi-grid">
+            <div class="sk-card sk-default"><div class="sk-bar" style="background:var(--fog)"></div><span class="sk-label">Statement Entries</span><span class="sk-val" data-count="1842">1,842</span><span class="sk-meta">Feb 2026</span></div>
+            <div class="sk-card c-teal"><div class="sk-bar"></div><span class="sk-label">Total Credits</span><span class="sk-val" data-count="8.4" data-prefix="₹" data-suffix=" Cr">₹8.4 Cr</span><span class="sk-meta">Inflow</span></div>
+            <div class="sk-card c-gold"><div class="sk-bar"></div><span class="sk-label">Total Debits</span><span class="sk-val" data-count="4.0" data-prefix="₹" data-suffix=" Cr">₹4.0 Cr</span><span class="sk-meta">Outflow</span></div>
+            <div class="sk-card c-azure"><div class="sk-bar"></div><span class="sk-label">Net Balance</span><span class="sk-val" data-count="4.4" data-prefix="₹" data-suffix=" Cr">₹4.4 Cr</span><span class="sk-meta up">↑ Positive</span></div>
+          </div>
+          <div class="s-table-wrap">
+            <div class="s-table-head"><h3>Bank Statement — Bank of Baroda · CA00124567</h3><span>Feb 2026 · 1,842 entries</span></div>
+            <table>
+              <thead><tr><th>Value Date</th><th>Description</th><th>Cheque / Ref</th><th>Debit (₹)</th><th>Credit (₹)</th><th>Balance (₹)</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="color:var(--mist)">01-02-2026</td><td><strong>NEFT — ABC Traders</strong></td><td class="mono" style="font-size:0.74rem">NEFT20260201</td><td>—</td><td style="color:var(--teal)">1,24,300</td><td>4,42,180</td></tr>
+                <tr><td class="mono" style="color:var(--mist)">03-02-2026</td><td><strong>UPI/Metro Services</strong></td><td class="mono" style="font-size:0.74rem">UPI00034512</td><td style="color:var(--danger)">7,500</td><td>—</td><td>4,34,680</td></tr>
+                <tr><td class="mono" style="color:var(--mist)">05-02-2026</td><td><strong>IMPS — Global Tech</strong></td><td class="mono" style="font-size:0.74rem">IMPS56789012</td><td>—</td><td style="color:var(--teal)">92,000</td><td>5,26,680</td></tr>
+                <tr><td class="mono" style="color:var(--mist)">07-02-2026</td><td><strong>GST Payment</strong></td><td class="mono" style="font-size:0.74rem">CBDT20260207</td><td style="color:var(--danger)">34,560</td><td>—</td><td>4,92,120</td></tr>
+                <tr><td class="mono" style="color:var(--mist)">10-02-2026</td><td><strong>RTGS — XYZ Suppliers</strong></td><td class="mono" style="font-size:0.74rem">RTGS98760001</td><td>—</td><td style="color:var(--teal)">18,750</td><td>5,10,870</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: Ledger -->
+        <div class="dash-view" id="dv-ledger" style="display:none">
+          <div class="kpi-grid">
+            <div class="sk-card sk-default"><div class="sk-bar" style="background:var(--fog)"></div><span class="sk-label">Total Entries</span><span class="sk-val" data-count="3847">3,847</span><span class="sk-meta">FY 2025–26</span></div>
+            <div class="sk-card c-teal"><div class="sk-bar"></div><span class="sk-label">Verified</span><span class="sk-val" data-count="3682">3,682</span><span class="sk-meta up">↑ 95.7%</span></div>
+            <div class="sk-card c-gold"><div class="sk-bar"></div><span class="sk-label">Flagged</span><span class="sk-val" data-count="112">112</span><span class="sk-meta down">Review needed</span></div>
+            <div class="sk-card c-azure"><div class="sk-bar"></div><span class="sk-label">AI Match Rate</span><span class="sk-val" data-count="98.2" data-suffix="%">98.2%</span><span class="sk-meta">Narration match</span></div>
+          </div>
+          <div class="s-table-wrap">
+            <div class="s-table-head"><h3>Tally Ledger Verification</h3><span>Feb 2026 · 3,847 entries</span></div>
+            <table>
+              <thead><tr><th>Date</th><th>Narration</th><th>Dr (₹)</th><th>Cr (₹)</th><th>Voucher No.</th><th>Verified</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="color:var(--mist)">01-02-2026</td><td><strong>Purchase — Raw Materials</strong></td><td>84,500</td><td>—</td><td class="mono">PUR-2024</td><td><span class="stag ok">✓ Yes</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">03-02-2026</td><td><strong>Sales Invoice #INV-089</strong></td><td>—</td><td>1,24,000</td><td class="mono">SAL-089</td><td><span class="stag ok">✓ Yes</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">05-02-2026</td><td><strong>Staff Salary — Feb</strong></td><td>42,000</td><td>—</td><td class="mono">JNL-021</td><td><span class="stag warn">⚠ Flag</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">07-02-2026</td><td><strong>GST Payment — Q3</strong></td><td>34,560</td><td>—</td><td class="mono">TAX-031</td><td><span class="stag ok">✓ Yes</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist)">10-02-2026</td><td><strong>Transport Charges</strong></td><td>8,200</td><td>—</td><td class="mono">EXP-044</td><td><span class="stag err">⏳ Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: GST -->
+        <div class="dash-view" id="dv-gst" style="display:none">
+          <div class="gst-grid">
+            <div class="gst-card"><span class="gst-label">GSTR-3B Declared</span><span class="gst-val" data-count="4.82" data-prefix="₹" data-suffix=" L">₹4.82 L</span><span class="gst-sub">Total tax liability</span></div>
+            <div class="gst-card"><span class="gst-label">GSTR-2B Auto-Draft</span><span class="gst-val" data-count="4.67" data-prefix="₹" data-suffix=" L">₹4.67 L</span><span class="gst-sub">ITC as auto-drafted</span></div>
+            <div class="gst-card" style="border-color:rgba(255,85,101,0.22)"><span class="gst-label">ITC Mismatch</span><span class="gst-val" style="color:var(--danger)" data-count="15000" data-prefix="₹">₹15,000</span><span class="gst-sub" style="color:var(--danger)">⚠ Needs resolution</span></div>
+          </div>
+          <div class="s-table-wrap">
+            <div class="s-table-head"><h3>GSTR-2B vs GSTR-3B Reconciliation</h3><span>November 2024</span></div>
+            <table>
+              <thead><tr><th>GSTIN</th><th>Supplier</th><th>GSTR-2B ITC (₹)</th><th>Claimed ITC (₹)</th><th>Diff (₹)</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="font-size:0.74rem">27AAPFU0939F1ZV</td><td><strong>Raj Enterprises</strong></td><td>12,400</td><td>12,400</td><td class="mono" style="color:var(--teal)">₹0</td><td><span class="stag ok">✓ Match</span></td></tr>
+                <tr><td class="mono" style="font-size:0.74rem">29ABCDE1234F1Z5</td><td><strong>Alpha Traders</strong></td><td>8,200</td><td>9,500</td><td class="mono" style="color:var(--danger)">₹1,300</td><td><span class="stag err">⚠ Excess Claim</span></td></tr>
+                <tr><td class="mono" style="font-size:0.74rem">07AAACM9527G1Z0</td><td><strong>Metro Supplies</strong></td><td>15,600</td><td>15,600</td><td class="mono" style="color:var(--teal)">₹0</td><td><span class="stag ok">✓ Match</span></td></tr>
+                <tr><td class="mono" style="font-size:0.74rem">06AALCA4685R1Z2</td><td><strong>Blue Tech India</strong></td><td>22,000</td><td>8,300</td><td class="mono" style="color:var(--gold)">₹13,700</td><td><span class="stag warn">↓ Under-claimed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: TDS -->
+        <div class="dash-view" id="dv-tds" style="display:none">
+          <div class="kpi-grid">
+            <div class="sk-card c-teal"><div class="sk-bar"></div><span class="sk-label">TDS Deducted</span><span class="sk-val" data-count="84500" data-prefix="₹">₹84,500</span><span class="sk-meta">FY 2025–26</span></div>
+            <div class="sk-card c-azure"><div class="sk-bar"></div><span class="sk-label">26AS Matched</span><span class="sk-val" data-count="78200" data-prefix="₹">₹78,200</span><span class="sk-meta up">✓ Verified</span></div>
+            <div class="sk-card c-gold"><div class="sk-bar"></div><span class="sk-label">Unmatched</span><span class="sk-val" data-count="6300" data-prefix="₹">₹6,300</span><span class="sk-meta down">Needs review</span></div>
+            <div class="sk-card sk-default"><div class="sk-bar" style="background:var(--fog)"></div><span class="sk-label">Deductees</span><span class="sk-val" data-count="14">14</span><span class="sk-meta">Active</span></div>
+          </div>
+          <div class="tds-list">
+            <div style="font-family:var(--font-mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--mist);margin-bottom:10px;">TDS Deductee Register — 26AS Cross-Check</div>
+            <div class="tds-item"><div><div class="tds-item-name">ABC Traders Pvt Ltd</div><div class="tds-item-pan mono">PAN: AABCA1234B · Sec 194C</div></div><div class="tds-item-right"><div class="tds-item-amt">₹18,500</div><div class="tds-item-26as up">✓ 26AS: ₹18,500</div></div></div>
+            <div class="tds-item"><div><div class="tds-item-name">Metro Services India</div><div class="tds-item-pan mono">PAN: BCDME5678K · Sec 194J</div></div><div class="tds-item-right"><div class="tds-item-amt">₹25,000</div><div class="tds-item-26as" style="color:var(--gold)">⚠ 26AS: ₹21,000</div></div></div>
+            <div class="tds-item"><div><div class="tds-item-name">Global Tech Solutions</div><div class="tds-item-pan mono">PAN: GTSGL9012R · Sec 194I</div></div><div class="tds-item-right"><div class="tds-item-amt">₹34,800</div><div class="tds-item-26as up">✓ 26AS: ₹34,800</div></div></div>
+            <div class="tds-item"><div><div class="tds-item-name">Bharat Industries Ltd.</div><div class="tds-item-pan mono">PAN: BILBH3456M · Sec 194C</div></div><div class="tds-item-right"><div class="tds-item-amt">₹6,200</div><div class="tds-item-26as" style="color:var(--danger)">✗ 26AS: —</div></div></div>
+          </div>
+        </div>
+
+        <!-- VIEW: Reports -->
+        <div class="dash-view" id="dv-reports" style="display:none">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--mist);margin-bottom:16px;">Audit-Ready Report Library · FY 2025–26</div>
+          <div class="reports-grid">
+            <div class="report-card"><div class="report-icon">📊</div><div class="report-name">Bank Reconciliation</div><div class="report-meta">23-02-2026 · PDF · 2.4MB</div><div class="report-dl">⬇ Download</div></div>
+            <div class="report-card"><div class="report-icon">📒</div><div class="report-name">Ledger Verification</div><div class="report-meta">22-02-2026 · XLSX · 1.1MB</div><div class="report-dl">⬇ Download</div></div>
+            <div class="report-card"><div class="report-icon">🧾</div><div class="report-name">GST Reconciliation</div><div class="report-meta">20-02-2026 · PDF · 1.8MB</div><div class="report-dl">⬇ Download</div></div>
+            <div class="report-card"><div class="report-icon">🔐</div><div class="report-name">TDS Summary · 26AS</div><div class="report-meta">19-02-2026 · PDF · 980KB</div><div class="report-dl">⬇ Download</div></div>
+            <div class="report-card"><div class="report-icon">📋</div><div class="report-name">Statutory Audit Pack</div><div class="report-meta">18-02-2026 · ZIP · 5.2MB</div><div class="report-dl">⬇ Download</div></div>
+            <div class="report-card" style="border-style:dashed;opacity:0.55;"><div class="report-icon">➕</div><div class="report-name">Custom Report</div><div class="report-meta">Available in full version</div><div class="report-dl" style="cursor:default;">Configure →</div></div>
+          </div>
+        </div>
+
+        <!-- VIEW: Audit Logs -->
+        <div class="dash-view" id="dv-audit" style="display:none">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--mist);margin-bottom:16px;">System Audit Log — Activity Trail</div>
+          <div class="s-table-wrap">
+            <div class="s-table-head"><h3>Audit Activity Log</h3><span>Last 7 days</span></div>
+            <table>
+              <thead><tr><th>Timestamp</th><th>Action</th><th>Module</th><th>User</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="color:var(--mist);font-size:0.78rem">23-02-2026 14:32</td><td><strong>Statement Uploaded</strong></td><td>Bank Recon</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e6d6f4e7c6b6d61606d67626b7c6f67206d6163">[email&#160;protected]</a></td><td><span class="stag ok">✓ Success</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist);font-size:0.78rem">23-02-2026 14:33</td><td><strong>AI Matching Triggered</strong></td><td>Engine</td><td>System</td><td><span class="stag ok">✓ 96.8% match</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist);font-size:0.78rem">23-02-2026 14:38</td><td><strong>Difference Flag Raised</strong></td><td>Bank Recon</td><td>System</td><td><span class="stag warn">⚠ 2 entries</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist);font-size:0.78rem">22-02-2026 11:10</td><td><strong>GST Report Generated</strong></td><td>GST Module</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f19290b18394929e9f92989d94839098df929e9c">[email&#160;protected]</a></td><td><span class="stag ok">✓ Success</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist);font-size:0.78rem">22-02-2026 09:55</td><td><strong>26AS Mismatch Detected</strong></td><td>TDS Tracker</td><td>System</td><td><span class="stag err">⚠ ₹4,000 gap</span></td></tr>
+                <tr><td class="mono" style="color:var(--mist);font-size:0.78rem">21-02-2026 17:22</td><td><strong>Ledger Export Downloaded</strong></td><td>Reports</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d1b2b091a3b4b2bebfb2b8bdb4a3b0b8ffb2bebc">[email&#160;protected]</a></td><td><span class="stag ok">✓ Downloaded</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: Settings -->
+        <div class="dash-view" id="dv-settings" style="display:none">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="gst-card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div><span class="gst-label">Bank Integration</span><div style="font-size:0.88rem;color:var(--white);font-weight:600;">Bank of Baroda — Account Linked</div></div>
+              <span class="stag ok">✓ Connected</span>
+            </div>
+            <div class="gst-card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div><span class="gst-label">ERP Integration</span><div style="font-size:0.88rem;color:var(--white);font-weight:600;">Tally ERP 9 — Synced</div></div>
+              <span class="stag ok">✓ Active</span>
+            </div>
+            <div class="gst-card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div><span class="gst-label">GST Portal</span><div style="font-size:0.88rem;color:var(--white);font-weight:600;">GSTIN: 09AADCB1234M1ZX</div></div>
+              <span class="stag ok">✓ Verified</span>
+            </div>
+            <div class="gst-card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div><span class="gst-label">AI Engine Version</span><div style="font-size:0.88rem;color:var(--white);font-weight:600;">v1.4.2 — Prototype Build</div></div>
+              <span class="stag warn">⚠ Beta</span>
+            </div>
+            <div class="gst-card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div><span class="gst-label">Data Encryption</span><div style="font-size:0.88rem;color:var(--white);font-weight:600;">AES-256 · TLS 1.3 Active</div></div>
+              <span class="stag ok">✓ Secure</span>
+            </div>
+            <div class="gst-card" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div><span class="gst-label">DPDP Compliance Mode</span><div style="font-size:0.88rem;color:var(--white);font-weight:600;">India DPDP Act 2023 — Enabled</div></div>
+              <span class="stag ok">✓ Compliant</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer" data-aos="fade-up">
+    <span style="font-size:1.1rem;flex-shrink:0;">⚠️</span>
+    <span><strong style="color:var(--fog);">Prototype Notice:</strong> This dashboard is an early-stage prototype. All transaction data is representative of real MSME patterns. Performance and feature coverage are continuously enhanced under Chartered Accountant oversight.</span>
+  </div>
+
+  <!-- Access Box -->
+  <div class="access-box" data-aos="fade-up">
+    <div>
+      <h3>Request Full Access</h3>
+      <p>Identity and business verification is required to access live financial data. Our team responds within 24 hours.</p>
+    </div>
+    <a href="contact.html" class="btn btn-primary btn-lg">
+      Apply for Access →
+    </a>
+  </div>
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <div data-aos="fade-up">
+      <span class="eyebrow" style="display:flex;justify-content:center;">Get Started</span>
+      <h2 class="section-title">Want a personalised<br><span class="gi">walkthrough?</span></h2>
+      <p class="cta-sub">Our team will tailor the demo to your business, CA practice, or integration workflow.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">Schedule a Demo →</a>
+        <a href="index.html" class="btn btn-glass btn-lg">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="url(#dff1)"/><path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.92"/><circle cx="18.5" cy="16.5" r="3.5" fill="url(#dff2)" opacity="0.8"/><defs><linearGradient id="dff1" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#1A6EFF"/></linearGradient><linearGradient id="dff2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#00B8A0"/></linearGradient></defs></svg>
+        </div>
+        <p class="footer-brand-name">Reconciler<span> AI</span></p>
+        <p class="footer-desc">AI-driven compliance platform for Indian MSMEs. DPIIT &amp; StartinUP recognised.</p>
+      </div>
+      <div class="f-col"><h5>Product</h5><ul class="f-links"><li><a href="index.html#features">Features</a></li><li><a href="contact.html">Request Demo</a></li><li><a href="demo.html">Dashboard</a></li></ul></div>
+      <div class="f-col"><h5>Company</h5><ul class="f-links"><li><a href="index.html#about">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="f-col">
+        <h5>Contact</h5>
+        <div class="f-contact"><div class="f-contact-ico">📧</div><div><a href="/cdn-cgi/l/email-protection#fe9d9190909b9d8abe8c9b9d91909d97929b8c9f97d09d9193"><span class="__cf_email__" data-cfemail="3f5c5051515a5c4b7f4d5a5c50515c56535a4d5e56115c5052">[email&#160;protected]</span></a></div></div>
+        <div class="f-contact"><div class="f-contact-ico">📞</div><div><a href="tel:+919990502146">+91 9990502146</a></div></div>
+        <div class="f-contact"><div class="f-contact-ico">📍</div><div>Ghaziabad, U.P., India</div></div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 Reconciler AI &nbsp;·&nbsp; DPIIT &amp; StartinUP Recognised</span>
+      <div class="f-tags"><span class="f-tag">fintech</span><span class="f-tag">MSME</span><span class="f-tag">India</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Dashboard sidebar tab switching script (page-level, no conflict with main.js) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sideItems = document.querySelectorAll('#dashSidebar .d-nav-item');
+  const views = document.querySelectorAll('.dash-view');
+
+  const viewMap = {
+    'overview':  'dv-overview',
+    'bank':      'dv-bank',
+    'bank-stmt': 'dv-bank-stmt',
+    'ledger':    'dv-ledger',
+    'gst':       'dv-gst',
+    'tds':       'dv-tds',
+    'reports':   'dv-reports',
+    'audit':     'dv-audit',
+    'settings':  'dv-settings',
+  };
+
+  sideItems.forEach(item => {
+    item.addEventListener('click', () => {
+      sideItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const key = item.dataset.view;
+      views.forEach(v => v.style.display = 'none');
+      const target = document.getElementById(viewMap[key]);
+      if (target) {
+        target.style.display = 'block';
+        // Animate counters in the newly shown view
+        target.querySelectorAll('[data-count]').forEach(el => {
+          const target2 = parseFloat(el.dataset.count);
+          const prefix = el.dataset.prefix||'';
+          const suffix = el.dataset.suffix||'';
+          const isF = String(target2).includes('.');
+          const dur = 1600;
+          let start = null;
+          const step = ts => {
+            if(!start) start=ts;
+            const p = Math.min((ts-start)/dur,1);
+            const ease = 1-Math.pow(1-p,4);
+            const v = ease*target2;
+            el.textContent = prefix+(isF?v.toFixed(1):Math.floor(v).toLocaleString('en-IN'))+suffix;
+            if(p<1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      }
+    });
+  });
+
+  // Init counters on overview view (first visible)
+  const initView = document.getElementById('dv-overview');
+  if(initView) {
+    initView.querySelectorAll('[data-count]').forEach(el => {
+      const target2 = parseFloat(el.dataset.count);
+      const prefix = el.dataset.prefix||'';
+      const suffix = el.dataset.suffix||'';
+      const isF = String(target2).includes('.');
+      const dur = 1600;
+      let start = null;
+      const step = ts => {
+        if(!start) start=ts;
+        const p = Math.min((ts-start)/dur,1);
+        const ease = 1-Math.pow(1-p,4);
+        const v = ease*target2;
+        el.textContent = prefix+(isF?v.toFixed(1):Math.floor(v).toLocaleString('en-IN'))+suffix;
+        if(p<1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+});

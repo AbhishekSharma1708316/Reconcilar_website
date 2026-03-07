@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconciler AI | Contact &amp; Demo Request</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/main.js"></script>
+
+<script>
+  // ── EmailJS Config ──────────────────────────────
+  const EJS_PUBLIC_KEY  = "WxI8pdKErb6UQSwl6";
+  const EJS_SERVICE_ID  = "service_383opz7";
+  const EJS_TEMPLATE_ID = "template_tmf97a1";
+  // ────────────────────────────────────────────────
+
+  (function() {
+    emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+  })();
+
+  window.addEventListener("DOMContentLoaded", function () {
+    if (window.AOS) AOS.init({ duration: 700, once: true });
+
+    const form       = document.getElementById("contactForm");
+    const btn        = document.getElementById("submitBtn");
+    const btnText    = document.getElementById("btnText");
+    const errBox     = document.getElementById("formError");
+    const successBox = document.getElementById("successBox");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const user_name     = document.getElementById("user_name").value.trim();
+      const user_email    = document.getElementById("user_email").value.trim();
+      const user_phone    = document.getElementById("user_phone").value.trim();
+      const user_company  = document.getElementById("user_company").value.trim();
+      const user_role     = document.getElementById("user_role").value;
+      const user_interest = document.getElementById("user_interest").value;
+      const message       = document.getElementById("message").value.trim();
+
+      // Validate
+      errBox.style.display = "none";
+      if (!user_name) { showError("Please enter your full name."); return; }
+      if (!user_email || !user_email.includes("@")) { showError("Please enter a valid email address."); return; }
+      if (!user_role) { showError("Please select your role."); return; }
+
+      // Loading
+      btn.disabled = true;
+      btnText.textContent = "Sending…";
+      btn.style.opacity = "0.7";
+
+      // Send via EmailJS
+      emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+        user_name,
+        user_email,
+        user_phone:    user_phone    || "Not provided",
+        user_company:  user_company  || "Not provided",
+        user_role,
+        user_interest: user_interest || "Not specified",
+        message:       message       || "No message"
+      })
+      .then(function () {
+        form.style.display = "none";
+        successBox.style.display = "flex";
+      })
+      .catch(function (err) {
+        console.error("EmailJS error:", err);
+        showError("Something went wrong. Please try again or email us at connect@reconcilerai.com");
+        btn.disabled = false;
+        btnText.textContent = "Submit Request";
+        btn.style.opacity = "1";
+      });
+    });
+
+    function showError(msg) {
+      errBox.textContent = msg;
+      errBox.style.display = "block";
+      btn.disabled = false;
+      btnText.textContent = "Submit Request";
+      btn.style.opacity = "1";
+    }
+  });
+</script>
+</head>
+<body>
+
+<div id="noise" aria-hidden="true"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg class="nav-logo-svg" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="url(#cnl)"/>
+        <path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.95"/>
+        <circle cx="18.5" cy="16.5" r="3.5" fill="url(#cnl2)" opacity="0.85"/>
+        <defs>
+          <linearGradient id="cnl" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#1A6EFF"/></linearGradient>
+          <linearGradient id="cnl2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#00B8A0"/></linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-wordmark">Reconciler<span> AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary btn-sm">Contact Us</a>
+    </div>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-progress"></div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div data-aos="fade-up">
+      <div style="margin-bottom:18px;"><span class="badge bt"><span class="bdot"></span>Get In Touch</span></div>
+      <h1>Contact &amp; <span class="gi" style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;">Demo Request</span></h1>
+      <p style="margin-top:14px;color:var(--mist);font-size:1.05rem;line-height:1.78;max-width:560px;">
+        Request a demo, explore partnership opportunities, or enquire about early access. We respond within 24 hours.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section-pad" style="background:var(--void);">
+<div class="container">
+<div class="contact-layout">
+
+  <!-- FORM CARD -->
+  <div class="form-shell" data-aos="fade-up">
+    <h2>Request a Demo</h2>
+    <p class="form-sub">Fill in your details — our team will set up a personalised walkthrough within 24 hours.</p>
+
+    <form id="contactForm" novalidate style="margin-top:24px;">
+
+      <div class="f-row">
+        <div class="f-group">
+          <label>Full Name *</label>
+          <input type="text" id="user_name" placeholder="Your full name" required>
+        </div>
+        <div class="f-group">
+          <label>Email Address *</label>
+          <input type="email" id="user_email" placeholder="you@company.com" required>
+        </div>
+      </div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label>Phone Number</label>
+          <input type="tel" id="user_phone" placeholder="+91 XXXXXXXXXX">
+        </div>
+        <div class="f-group">
+          <label>Company / Organisation</label>
+          <input type="text" id="user_company" placeholder="Company or CA firm name">
+        </div>
+      </div>
+
+      <div class="f-group">
+        <label>I am a *</label>
+        <select id="user_role" required>
+          <option value="" disabled selected>Select your role</option>
+          <option>MSME Business Owner</option>
+          <option>Chartered Accountant</option>
+          <option>Financial Controller / CFO</option>
+          <option>Investor / VC Partner</option>
+          <option>Bank / Financial Institution</option>
+          <option>Government / Policy Maker</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="f-group">
+        <label>Primary Interest</label>
+        <select id="user_interest">
+          <option value="" disabled selected>What are you looking for?</option>
+          <option>Bank Reconciliation Demo</option>
+          <option>GST / TDS Compliance Module</option>
+          <option>Audit Report Generation</option>
+          <option>Full Platform Demo</option>
+          <option>Partnership / API Integration</option>
+          <option>Investment Enquiry</option>
+          <option>CA Firm Onboarding</option>
+        </select>
+      </div>
+
+      <div class="f-group">
+        <label>Message / Use Case</label>
+        <textarea id="message" placeholder="Tell us about your business scale, current reconciliation pain points, or any specific requirements we should know about…" rows="5"></textarea>
+      </div>
+
+      <!-- Error box -->
+      <div id="formError" style="display:none;background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;color:#ff6b6b;font-size:0.88rem;"></div>
+
+      <button type="submit" id="submitBtn" class="btn btn-primary form-send">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        <span id="btnText">Submit Request</span>
+      </button>
+    </form>
+
+    <!-- Success Box -->
+    <div class="success-box" id="successBox" style="display:none;">
+      <div class="sico">✅</div>
+      <p>Request Submitted Successfully!</p>
+      <span>Our team at <a href="mailto:connect@reconcilerai.com">connect@reconcilerai.com</a> will respond within 24 hours.</span>
+    </div>
+  </div>
+
+  <!-- INFO PANEL -->
+  <div class="info-stack">
+
+    <div class="info-card" data-aos="fade-up">
+      <h3>Contact Information</h3>
+      <div class="c-item">
+        <div class="c-ico">📧</div>
+        <div><div class="c-detail"><span class="lbl">Email</span></div><a href="mailto:connect@reconcilerai.com">connect@reconcilerai.com</a></div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">📞</div>
+        <div><div class="c-detail"><span class="lbl">Phone</span></div><a href="tel:+919990502146">+91 9990502146</a></div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">📍</div>
+        <div><div class="c-detail"><span class="lbl">Location</span></div>Ghaziabad, Uttar Pradesh, India</div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">⏱</div>
+        <div><div class="c-detail"><span class="lbl">Response Time</span></div>Within 24 hours · Mon–Sat</div>
+      </div>
+    </div>
+
+    <div class="info-card" data-aos="fade-up" data-aos-delay="80">
+      <h3>What Happens After You Submit?</h3>
+      <div class="steps-list">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div><div class="step-t">Instant Email Confirmation</div><div class="step-d">You receive a confirmation email. We receive your full details at <a href="mailto:connect@reconcilerai.com">connect@reconcilerai.com</a>.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div><div class="step-t">Verification &amp; Discovery Call</div><div class="step-d">Our team reviews your submission and schedules a 20-minute discovery call within 24 hours.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div><div class="step-t">Personalised Demo Session</div><div class="step-d">Live walkthrough tailored to your business, CA practice, or integration needs.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card" data-aos="fade-up" data-aos-delay="160">
+      <h3>Government Recognition</h3>
+      <p style="font-size:0.86rem;color:var(--mist);line-height:1.7;margin-bottom:16px;">
+        Officially recognised by the Government of India and the State of Uttar Pradesh as an innovative technology startup.
+      </p>
+      <div class="recog-row">
+        <div class="recog-chip">🏛 DPIIT Recognised</div>
+        <div class="recog-chip">✦ StartinUP Certified</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <div data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center;display:flex;">Explore First</span>
+      <h2 class="section-title">Want to learn more<br><span class="gi">before booking a call?</span></h2>
+      <p class="cta-sub">Discover our platform capabilities — no login required.</p>
+      <div class="cta-btns">
+        <a href="index.html#features" class="btn btn-primary btn-lg">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Explore Platform Features
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="url(#cff1)"/><path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.92"/><circle cx="18.5" cy="16.5" r="3.5" fill="url(#cff2)" opacity="0.8"/><defs><linearGradient id="cff1" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#1A6EFF"/></linearGradient><linearGradient id="cff2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E5C8"/><stop offset="100%" stop-color="#00B8A0"/></linearGradient></defs></svg>
+        </div>
+        <p class="footer-brand-name">Reconciler<span> AI</span></p>
+        <p class="footer-desc">AI-driven compliance platform for Indian MSMEs. DPIIT &amp; StartinUP recognised.</p>
+      </div>
+      <div class="f-col"><h5>Product</h5><ul class="f-links"><li><a href="index.html#features">Features</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+      <div class="f-col"><h5>Company</h5><ul class="f-links"><li><a href="index.html#about">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="f-col">
+        <h5>Contact</h5>
+        <div class="f-contact"><div class="f-contact-ico">📧</div><div><a href="mailto:connect@reconcilerai.com">connect@reconcilerai.com</a></div></div>
+        <div class="f-contact"><div class="f-contact-ico">📞</div><div><a href="tel:+919990502146">+91 9990502146</a></div></div>
+        <div class="f-contact"><div class="f-contact-ico">📍</div><div>Ghaziabad, Uttar Pradesh, India</div></div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 Reconciler AI · All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

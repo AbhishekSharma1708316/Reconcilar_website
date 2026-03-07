@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Reconciler AI — AI-driven financial reconciliation and compliance for Indian MSMEs. DPIIT & StartinUP recognised.">
+<title>Reconciler AI | Financial Compliance, Automated.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/main.js"></script>
+</head>
+<body>
+<div id="noise" aria-hidden="true"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- ══ NAVBAR ══ -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg class="nav-logo-svg" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="url(#nl1)"/>
+        <path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.95"/>
+        <circle cx="18.5" cy="16.5" r="3.5" fill="url(#nl2)" opacity="0.85"/>
+        <defs>
+          <linearGradient id="nl1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#00E5C8"/><stop offset="1" stop-color="#1A6EFF"/></linearGradient>
+          <linearGradient id="nl2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00E5C8"/><stop offset="1" stop-color="#00B8A0"/></linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-wordmark">Reconciler<span> AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li class="nav-dropdown">
+        <a href="#features">Platform</a>
+        <div class="nav-dropdown-menu">
+          <a href="#features">All Capabilities</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="#features">🏦 Bank Reconciliation</a>
+          <a href="#features">📒 Ledger Matching</a>
+          <a href="#features">🧾 GST Compliance</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="contact.html">Request a Demo</a>
+        </div>
+      </li>
+      <li><a href="#why">Why Us</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-glass btn-sm">Contact</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">Get a Personalised Demo →</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-progress"></div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ring ring-1"></div><div class="hero-ring ring-2"></div><div class="hero-ring ring-3"></div>
+  <div class="hero-content container">
+    <div class="hero-badges">
+      <span class="badge bt"><span class="bdot"></span>DPIIT Recognised</span>
+      <span class="badge bg"><span class="bdot"></span>StartinUP Certified · U.P.</span>
+    </div>
+    <h1 class="hero-headline">Financial Compliance,<br><span class="word-ai">Automated.</span></h1>
+    <p class="hero-sub">Reconciler AI delivers AI-driven financial reconciliation and compliance solutions for Indian MSMEs, enabling organisations to operate with accuracy, transparency, and regulatory confidence.</p>
+    <div class="hero-ctas">
+      <a href="contact.html" class="btn btn-primary btn-lg">
+        Get a Personalised Demo
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#interactive" class="btn btn-glass btn-lg">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Explore the Platform
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><strong data-count="95" data-suffix="%">95%</strong><span>Reconciliation Accuracy</span></div>
+      <div class="h-stat"><strong data-count="5" data-suffix="+">5+</strong><span>Bank Integrations</span></div>
+      <div class="h-stat"><strong>DPDP</strong><span>Compliant Architecture</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><div class="scroll-indicator"></div></div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="t-dot"></span>Bank Reconciliation</span>
+    <span class="ticker-item"><span class="t-dot"></span>GST Compliance</span>
+    <span class="ticker-item"><span class="t-dot"></span>TDS Management</span>
+    <span class="ticker-item"><span class="t-dot"></span>Ledger Matching</span>
+    <span class="ticker-item"><span class="t-dot"></span>Audit-Ready Reports</span>
+    <span class="ticker-item"><span class="t-dot"></span>DPDP Compliant</span>
+    <span class="ticker-item"><span class="t-dot"></span>CA-Validated Workflows</span>
+    <span class="ticker-item"><span class="t-dot"></span>DPIIT Recognised</span>
+    <span class="ticker-item"><span class="t-dot"></span>StartinUP Certified</span>
+    <span class="ticker-item"><span class="t-dot"></span>ITC Optimisation</span>
+    <span class="ticker-item"><span class="t-dot"></span>26AS Cross-Verification</span>
+    <span class="ticker-item"><span class="t-dot"></span>Anomaly Detection</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section id="about" class="section-pad" style="background:linear-gradient(180deg,var(--void),var(--deep));">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual" data-aos="fade-right" data-aos-duration="900">
+        <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px">
+          <circle cx="240" cy="240" r="220" stroke="rgba(0,229,200,0.05)" stroke-width="1"/>
+          <circle cx="240" cy="240" r="170" stroke="rgba(0,229,200,0.07)" stroke-width="1" stroke-dasharray="6 4"/>
+          <circle cx="240" cy="240" r="120" stroke="rgba(0,229,200,0.10)" stroke-width="1"/>
+          <circle cx="240" cy="240" r="58" fill="url(#sv-core)" opacity="0.9"/>
+          <circle cx="240" cy="240" r="50" fill="rgba(3,5,9,0.88)"/>
+          <text x="240" y="234" font-family="Syne" font-size="17" font-weight="800" fill="#00E5C8" text-anchor="middle" letter-spacing="-1">R·AI</text>
+          <text x="240" y="253" font-family="JetBrains Mono" font-size="7.5" fill="rgba(0,229,200,0.55)" text-anchor="middle" letter-spacing="2">ENGINE</text>
+          <g><circle cx="240" cy="58" r="36" fill="rgba(0,229,200,0.07)" stroke="rgba(0,229,200,0.22)" stroke-width="1.5"/><text x="240" y="53" font-size="15" text-anchor="middle" fill="white">🏦</text><text x="240" y="72" font-family="Syne" font-size="8.5" fill="rgba(0,229,200,0.7)" text-anchor="middle" font-weight="700">BANK</text></g>
+          <g><circle cx="406" cy="156" r="36" fill="rgba(77,158,255,0.07)" stroke="rgba(77,158,255,0.22)" stroke-width="1.5"/><text x="406" y="151" font-size="15" text-anchor="middle" fill="white">📊</text><text x="406" y="170" font-family="Syne" font-size="8.5" fill="rgba(77,158,255,0.7)" text-anchor="middle" font-weight="700">GST/TDS</text></g>
+          <g><circle cx="406" cy="324" r="36" fill="rgba(157,112,255,0.07)" stroke="rgba(157,112,255,0.22)" stroke-width="1.5"/><text x="406" y="319" font-size="15" text-anchor="middle" fill="white">📒</text><text x="406" y="338" font-family="Syne" font-size="8.5" fill="rgba(157,112,255,0.7)" text-anchor="middle" font-weight="700">LEDGER</text></g>
+          <g><circle cx="240" cy="422" r="36" fill="rgba(255,184,48,0.07)" stroke="rgba(255,184,48,0.22)" stroke-width="1.5"/><text x="240" y="417" font-size="15" text-anchor="middle" fill="white">📄</text><text x="240" y="436" font-family="Syne" font-size="8.5" fill="rgba(255,184,48,0.7)" text-anchor="middle" font-weight="700">REPORTS</text></g>
+          <g><circle cx="74" cy="324" r="36" fill="rgba(34,211,160,0.07)" stroke="rgba(34,211,160,0.22)" stroke-width="1.5"/><text x="74" y="319" font-size="15" text-anchor="middle" fill="white">🔐</text><text x="74" y="338" font-family="Syne" font-size="8.5" fill="rgba(34,211,160,0.7)" text-anchor="middle" font-weight="700">SECURE</text></g>
+          <g><circle cx="74" cy="156" r="36" fill="rgba(0,229,200,0.07)" stroke="rgba(0,229,200,0.18)" stroke-width="1.5"/><text x="74" y="151" font-size="15" text-anchor="middle" fill="white">✅</text><text x="74" y="170" font-family="Syne" font-size="8.5" fill="rgba(0,229,200,0.7)" text-anchor="middle" font-weight="700">CA VALID</text></g>
+          <line x1="240" y1="94" x2="240" y2="182" stroke="rgba(0,229,200,0.18)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="370" y1="172" x2="284" y2="212" stroke="rgba(77,158,255,0.18)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="370" y1="308" x2="284" y2="268" stroke="rgba(157,112,255,0.18)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="240" y1="386" x2="240" y2="298" stroke="rgba(255,184,48,0.18)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="110" y1="308" x2="196" y2="268" stroke="rgba(34,211,160,0.18)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="110" y1="172" x2="196" y2="212" stroke="rgba(0,229,200,0.18)" stroke-width="1" stroke-dasharray="4 3"/>
+          <circle r="5" fill="#00E5C8" opacity="0.85"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#op2"/></animateMotion></circle>
+          <circle r="3.5" fill="#4D9EFF" opacity="0.6"><animateMotion dur="14s" repeatCount="indefinite" begin="5s"><mpath href="#op2"/></animateMotion></circle>
+          <path id="op2" d="M240,68 A172,172 0 1,1 239.99,68" fill="none"/>
+          <defs><radialGradient id="sv-core" cx="50%" cy="50%" r="50%"><stop stop-color="#00E5C8" stop-opacity="0.28"/><stop offset="1" stop-color="#1A6EFF" stop-opacity="0.15"/></radialGradient></defs>
+        </svg>
+      </div>
+
+      <div>
+        <div data-aos="fade-left" data-aos-duration="900">
+          <span class="eyebrow">About Reconciler AI</span>
+          <h2 class="section-title">Enterprise-grade intelligence<br>for India's <span class="gi">backbone economy</span></h2>
+          <p class="desc" style="margin-bottom:18px;">Reconciler AI is a DPIIT and StartinUP–recognised fintech company building intelligent financial verification and compliance infrastructure for Indian MSMEs.</p>
+          <p class="desc" style="margin-bottom:28px;">Our platform leverages artificial intelligence, advanced data parsing, and regulatory intelligence to automate reconciliation, reduce operational risk, and improve financial transparency — working closely with Chartered Accountants, financial professionals, and MSME stakeholders to deliver enterprise-grade accuracy, security, and scalability.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;">
+            <span class="badge bt">🏛 DPIIT Recognised</span>
+            <span class="badge bg">✦ StartinUP Certified</span>
+          </div>
+        </div>
+
+        <!-- Mission / Problem / Solution -->
+        <div class="mps-grid" data-aos="fade-up" data-aos-delay="100">
+          <div class="mps-card mps-mission">
+            <div class="mps-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <h4>Mission</h4>
+            <p>Enable Indian MSMEs with enterprise-grade financial intelligence — accurate, transparent, and regulatory-ready.</p>
+          </div>
+          <div class="mps-card mps-problem">
+            <div class="mps-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h4>Problem</h4>
+            <p>Fragmented financial data, manual reconciliation, and compliance risk cost Indian MSMEs crores annually in errors and penalties.</p>
+          </div>
+          <div class="mps-card mps-solution">
+            <div class="mps-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4>Solution</h4>
+            <p>An AI-powered verification layer over your existing accounting systems — no replacement, zero disruption, immediate results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ METRICS ══ -->
+<div class="metrics-band">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="m-item" data-aos="fade-up"><span class="m-val" data-count="95" data-suffix="%">95%</span><span class="m-label">Reconciliation Accuracy</span></div>
+      <div class="m-item" data-aos="fade-up" data-aos-delay="80"><span class="m-val" data-count="5" data-suffix="+">5+</span><span class="m-label">Bank Integrations</span></div>
+      <div class="m-item" data-aos="fade-up" data-aos-delay="160"><span class="m-val" data-count="63" data-suffix="M+">63M+</span><span class="m-label">MSMEs Addressable</span></div>
+      <div class="m-item" data-aos="fade-up" data-aos-delay="240"><span class="m-val" data-count="100" data-suffix="%">100%</span><span class="m-label">DPDP Compliant</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FEATURES / CAPABILITIES ══ -->
+<section id="features" class="section-pad" style="background:var(--abyss);position:relative;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(0,229,200,0.04),transparent);pointer-events:none;"></div>
+  <div class="container">
+    <div style="text-align:center;max-width:620px;margin:0 auto 70px;" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center;display:flex;">Platform Capabilities</span>
+      <h2 class="section-title">Everything needed for<br><span class="g">financial compliance</span></h2>
+      <p class="desc" style="margin:0 auto;">Four core modules designed around how Indian MSMEs and Chartered Accountants actually work — not how software companies imagine they do.</p>
+    </div>
+
+    <div class="features-grid" style="grid-template-columns:repeat(3,1fr);">
+
+      <div class="f-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="f-glow"></div>
+        <span class="f-num">01 / 03</span>
+        <div class="f-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Bank Reconciliation</h3>
+        <p>Intelligent AI-based matching of bank statements across PDF, Excel, and CSV. Detects duplicates, gaps, and mismatches across multiple bank accounts — fully automated, zero manual effort.</p>
+        <div class="f-tag-row">
+          <span class="f-micro-tag">PDF · Excel · CSV</span>
+          <span class="f-micro-tag">Multi-bank</span>
+          <span class="f-micro-tag">Auto-detect</span>
+        </div>
+      </div>
+
+      <div class="f-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="f-glow"></div>
+        <span class="f-num">02 / 03</span>
+        <div class="f-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Ledger Matching</h3>
+        <p>Automated reconciliation with anomaly detection. Deep integration with Tally ERP — cross-verify every entry against source documents in real time with a full CA-grade audit trail.</p>
+        <div class="f-tag-row">
+          <span class="f-micro-tag">Tally ERP</span>
+          <span class="f-micro-tag">Anomaly Detection</span>
+          <span class="f-micro-tag">Audit Trail</span>
+        </div>
+      </div>
+
+      <div class="f-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="f-glow"></div>
+        <span class="f-num">03 / 03</span>
+        <div class="f-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10M7 12h6"/></svg>
+        </div>
+        <h3>GST Compliance</h3>
+        <p>GSTR-2B reconciliation and ITC optimisation. Automatically flags mismatches between declared and auto-drafted values — no manual GSTIN cross-referencing or spreadsheet juggling required.</p>
+        <div class="f-tag-row">
+          <span class="f-micro-tag">GSTR-2B vs 3B</span>
+          <span class="f-micro-tag">ITC Optimisation</span>
+          <span class="f-micro-tag">Auto-flag</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ BENTO DASHBOARD PREVIEW ══ -->
+<section id="interactive" class="section-pad" style="background:var(--deep);">
+  <div class="container">
+    <div style="text-align:center;max-width:660px;margin:0 auto 60px;" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center;display:flex;">Product Preview</span>
+      <h2 class="section-title">See the platform<br><span class="g">in action</span></h2>
+      <p class="desc" style="margin:0 auto;">Polished fragments of the Reconciler AI dashboard — drawn from our live prototype, battle-tested on real MSME datasets. No login required to explore.</p>
+    </div>
+
+    <div class="bento-grid" data-aos="fade-up" data-aos-delay="80">
+
+      <!-- KPI row -->
+      <div class="bento-kpi-row">
+        <div class="bento-kpi"><div class="bk-bar" style="background:var(--teal)"></div><span class="bk-label">Total Transactions</span><span class="bk-val" data-count="1842">1,842</span><span class="bk-sub">Feb 2026</span></div>
+        <div class="bento-kpi"><div class="bk-bar" style="background:var(--azure)"></div><span class="bk-label">Match Rate</span><span class="bk-val" data-count="96.8" data-suffix="%">96.8%</span><span class="bk-sub up">↑ 1.2% vs Jan</span></div>
+        <div class="bento-kpi"><div class="bk-bar" style="background:var(--gold)"></div><span class="bk-label">Differences</span><span class="bk-val" data-count="38">38</span><span class="bk-sub">Flagged for review</span></div>
+        <div class="bento-kpi"><div class="bk-bar" style="background:var(--danger)"></div><span class="bk-label">Pending</span><span class="bk-val" data-count="21">21</span><span class="bk-sub">Needs action</span></div>
+      </div>
+
+      <!-- Table + GST side by side -->
+      <div class="bento-row-2">
+        <!-- Transaction table -->
+        <div class="bento-panel bento-table-panel">
+          <div class="bento-panel-head">
+            <span class="bento-panel-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/></svg>
+              Reconciliation Log
+            </span>
+            <span class="bento-panel-meta">1,842 entries · BoB</span>
+          </div>
+          <table class="bento-table">
+            <thead><tr><th>Date</th><th>Party</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono muted">20-02-26</td><td><strong>ABC Traders</strong></td><td>₹45,200</td><td><span class="stag ok">✓ Matched</span></td></tr>
+              <tr><td class="mono muted">21-02-26</td><td><strong>XYZ Suppliers</strong></td><td>₹18,750</td><td><span class="stag warn">⚠ Diff</span></td></tr>
+              <tr><td class="mono muted">22-02-26</td><td><strong>Global Tech</strong></td><td>₹92,000</td><td><span class="stag ok">✓ Matched</span></td></tr>
+              <tr><td class="mono muted">22-02-26</td><td><strong>Metro Services</strong></td><td>₹7,500</td><td><span class="stag err">⏳ Pending</span></td></tr>
+              <tr><td class="mono muted">23-02-26</td><td><strong>Bharat Industries</strong></td><td>₹1,24,300</td><td><span class="stag ok">✓ Matched</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Right column: GST + TDS stacked -->
+        <div class="bento-right-stack">
+          <!-- GST panel -->
+          <div class="bento-panel bento-gst-panel">
+            <div class="bento-panel-head">
+              <span class="bento-panel-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+                GST Reconciliation
+              </span>
+              <span class="bento-panel-meta">Nov 2024</span>
+            </div>
+            <div class="gst-snap-row">
+              <div class="gst-snap"><span class="gst-snap-label">GSTR-3B</span><span class="gst-snap-val">₹4.82 L</span><span class="gst-snap-sub">Declared</span></div>
+              <div class="gst-snap-div">↔</div>
+              <div class="gst-snap"><span class="gst-snap-label">GSTR-2B</span><span class="gst-snap-val">₹4.67 L</span><span class="gst-snap-sub">Auto-Draft</span></div>
+            </div>
+            <div class="gst-mismatch">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              ITC Mismatch: <span style="color:var(--danger);font-weight:700;">₹15,000</span>
+            </div>
+          </div>
+
+          <!-- TDS panel -->
+          <div class="bento-panel bento-tds-panel">
+            <div class="bento-panel-head">
+              <span class="bento-panel-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                TDS Status
+              </span>
+              <span class="bento-panel-meta">26AS · FY 2025–26</span>
+            </div>
+            <div class="tds-snap-list">
+              <div class="tds-snap-item">
+                <div><div style="font-size:0.81rem;font-weight:700;color:var(--white);">ABC Traders</div><div class="mono muted" style="font-size:0.68rem;margin-top:2px;">Sec 194C</div></div>
+                <div style="text-align:right;"><div style="font-family:var(--font-h);font-size:0.95rem;font-weight:700;color:var(--teal);">₹18,500</div><div class="up mono" style="font-size:0.66rem;margin-top:2px;">✓ 26AS</div></div>
+              </div>
+              <div class="tds-snap-item">
+                <div><div style="font-size:0.81rem;font-weight:700;color:var(--white);">Metro Services</div><div class="mono muted" style="font-size:0.68rem;margin-top:2px;">Sec 194J</div></div>
+                <div style="text-align:right;"><div style="font-family:var(--font-h);font-size:0.95rem;font-weight:700;color:var(--gold);">₹25,000</div><div style="font-size:0.66rem;margin-top:2px;color:var(--gold);">⚠ ₹21,000</div></div>
+              </div>
+              <div class="tds-snap-item">
+                <div><div style="font-size:0.81rem;font-weight:700;color:var(--white);">Global Tech</div><div class="mono muted" style="font-size:0.68rem;margin-top:2px;">Sec 194I</div></div>
+                <div style="text-align:right;"><div style="font-family:var(--font-h);font-size:0.95rem;font-weight:700;color:var(--teal);">₹34,800</div><div class="up mono" style="font-size:0.66rem;margin-top:2px;">✓ 26AS</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="bento-disclaimer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span><strong>Early-stage prototype.</strong> All data represents real MSME transaction patterns. Full platform access is controlled and requires verification — <a href="contact.html" style="color:var(--teal);">request access here</a>.</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:44px;" data-aos="fade-up">
+      <a href="demo.html" class="btn btn-glass btn-lg" style="margin-right:14px;">View Full Dashboard</a>
+      <a href="contact.html" class="btn btn-primary btn-lg">Get a Personalised Demo →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TECHNOLOGY / STAGE ══ -->
+<section id="stage" class="section-pad" style="background:var(--abyss);">
+  <div class="container">
+    <div class="stage-layout">
+      <div data-aos="fade-right">
+        <span class="eyebrow">Operational Capabilities</span>
+        <h2 class="section-title">NEXT LEVEL<br><span class="g">Infrastructure</span></h2>
+        <p class="desc" style="margin-bottom:28px;">Reconciler AI is built on a robust foundation optimised for the Indian financial ecosystem — seamless ERP integration, automated bank parsing, and CA-validated accuracy at every layer.</p>
+        <div class="engine-note">
+          <div class="engine-note-label">Seamless ERP &amp; Banking Integration</div>
+          <div class="engine-note-body">Native Tally Prime synchronisation and automated statement parsing for major institutions including Bank of Baroda. Validated accuracy tested against multi-crore datasets under CA supervision — 95%+ ledger matching accuracy, production-ready.</div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="phase" data-aos="fade-up" data-aos-delay="0">
+          <div class="p-dot pd-done">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="p-body">
+            <span class="p-tag pt-done">✓ Live &amp; Operational</span>
+            <h3>Core Engine — Validated &amp; Deployed</h3>
+            <p style="font-size:0.84rem;color:var(--mist);margin-top:8px;line-height:1.65;">Native Tally Prime + Bank of Baroda reconciliation. Tested against real multi-crore MSME datasets, 95%+ accuracy — validated and approved by practising Chartered Accountants.</p>
+          </div>
+        </div>
+        <div class="phase" data-aos="fade-up" data-aos-delay="80">
+          <div class="p-dot pd-active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="p-body">
+            <span class="p-tag pt-active">▶ Active Development</span>
+            <h3>Platform Expansion — Multi-Bank + Universal Parser</h3>
+            <p style="font-size:0.84rem;color:var(--mist);margin-top:8px;line-height:1.65;">Extending support to SBI, HDFC, ICICI, Axis, and all major Indian banks. Universal parser for any statement format — PDF, Excel, CSV — zero manual configuration.</p>
+          </div>
+        </div>
+        <div class="phase" data-aos="fade-up" data-aos-delay="160">
+          <div class="p-dot pd-soon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="p-body">
+            <span class="p-tag pt-soon">○ Roadmap</span>
+            <h3>Compliance Intelligence — GST · TDS · Audit</h3>
+            <p style="font-size:0.84rem;color:var(--mist);margin-top:8px;line-height:1.65;">Full automation for GST + TDS workflows, audit-ready statutory reports, ISO 27001 certification, and a national rollout targeting 500+ MSMEs and 50+ CA firms across India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ WHY RECONCILER AI ══ -->
+<section id="why" class="section-pad" style="background:var(--deep);position:relative;overflow:hidden;">
+  <div style="position:absolute;bottom:-200px;right:-150px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,200,0.05),transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;top:-100px;left:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,110,255,0.04),transparent 65%);pointer-events:none;"></div>
+  <div class="container">
+
+    <!-- Header -->
+    <div style="text-align:center;max-width:600px;margin:0 auto 70px;" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center;display:flex;">Trust &amp; Differentiation</span>
+      <h2 class="section-title">Why <span class="g">Reconciler AI?</span></h2>
+      <p class="desc" style="margin:0 auto;">Every decision was made with one goal — give Indian MSMEs and their Chartered Accountants a platform they can stake their reputation on.</p>
+    </div>
+
+    <!-- Big stat strip -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:60px;" data-aos="fade-up">
+      <div style="background:var(--glass);border:1px solid var(--g-border);border-radius:var(--r-sm);padding:28px 20px;text-align:center;">
+        <div style="font-family:var(--font-h);font-size:2.4rem;font-weight:800;color:var(--teal);letter-spacing:-0.03em;">95%+</div>
+        <div style="font-size:0.8rem;color:var(--mist);margin-top:6px;line-height:1.5;">Ledger Matching<br>Accuracy</div>
+        <div style="margin-top:14px;height:4px;border-radius:4px;background:rgba(0,229,200,0.12);overflow:hidden;"><div style="height:100%;width:95%;background:var(--teal);border-radius:4px;"></div></div>
+      </div>
+      <div style="background:var(--glass);border:1px solid var(--g-border);border-radius:var(--r-sm);padding:28px 20px;text-align:center;">
+        <div style="font-family:var(--font-h);font-size:2.4rem;font-weight:800;color:var(--azure);letter-spacing:-0.03em;">63M+</div>
+        <div style="font-size:0.8rem;color:var(--mist);margin-top:6px;line-height:1.5;">MSMEs<br>Addressable Market</div>
+        <div style="margin-top:14px;height:4px;border-radius:4px;background:rgba(77,158,255,0.12);overflow:hidden;"><div style="height:100%;width:88%;background:var(--azure);border-radius:4px;"></div></div>
+      </div>
+      <div style="background:var(--glass);border:1px solid var(--g-border);border-radius:var(--r-sm);padding:28px 20px;text-align:center;">
+        <div style="font-family:var(--font-h);font-size:2.4rem;font-weight:800;color:var(--gold);letter-spacing:-0.03em;">5+</div>
+        <div style="font-size:0.8rem;color:var(--mist);margin-top:6px;line-height:1.5;">Bank<br>Integrations</div>
+        <div style="margin-top:14px;height:4px;border-radius:4px;background:rgba(255,184,48,0.12);overflow:hidden;"><div style="height:100%;width:72%;background:var(--gold);border-radius:4px;"></div></div>
+      </div>
+      <div style="background:var(--glass);border:1px solid var(--g-border);border-radius:var(--r-sm);padding:28px 20px;text-align:center;">
+        <div style="font-family:var(--font-h);font-size:2.4rem;font-weight:800;color:var(--teal);letter-spacing:-0.03em;">100%</div>
+        <div style="font-size:0.8rem;color:var(--mist);margin-top:6px;line-height:1.5;">DPDP<br>Compliant</div>
+        <div style="margin-top:14px;height:4px;border-radius:4px;background:rgba(0,229,200,0.12);overflow:hidden;"><div style="height:100%;width:100%;background:var(--teal);border-radius:4px;"></div></div>
+      </div>
+    </div>
+
+    <!-- Two column: visual left + cards right -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:50px;" data-aos="fade-up">
+
+      <!-- Left: Visual comparison panel -->
+      <div style="background:var(--glass);border:1px solid var(--g-border);border-radius:var(--r-md);padding:32px;position:sticky;top:100px;">
+        <div style="font-family:var(--font-mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--mist);margin-bottom:20px;">Before vs After · Reconciler AI</div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="background:rgba(255,85,101,0.06);border:1px solid rgba(255,85,101,0.15);border-radius:10px;padding:16px 18px;">
+            <div style="font-size:0.72rem;color:var(--danger);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">❌ Without Reconciler AI</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--mist);"><span style="color:var(--danger);">✗</span> Manual Excel sheet matching — hours per entry</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--mist);"><span style="color:var(--danger);">✗</span> GST mismatches found only at filing time</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--mist);"><span style="color:var(--danger);">✗</span> TDS discrepancies missed until 26AS pulls</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--mist);"><span style="color:var(--danger);">✗</span> Audit panic every quarter — no trail</div>
+            </div>
+          </div>
+
+          <div style="text-align:center;font-size:1.4rem;color:var(--teal);">↓</div>
+
+          <div style="background:rgba(0,229,200,0.05);border:1px solid rgba(0,229,200,0.18);border-radius:10px;padding:16px 18px;">
+            <div style="font-size:0.72rem;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">✅ With Reconciler AI</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--snow);"><span style="color:var(--teal);">✓</span> AI matches 1,800+ entries in seconds</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--snow);"><span style="color:var(--teal);">✓</span> GST ITC gaps flagged in real-time</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--snow);"><span style="color:var(--teal);">✓</span> 26AS cross-verification automated</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.83rem;color:var(--snow);"><span style="color:var(--teal);">✓</span> Audit-ready reports generated instantly</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recognition badges -->
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--g-border);display:flex;gap:10px;flex-wrap:wrap;">
+          <span class="badge bt" style="font-size:0.7rem;">🏛 DPIIT Recognised</span>
+          <span class="badge bg" style="font-size:0.7rem;">✦ StartinUP Certified</span>
+          <span class="badge bt" style="font-size:0.7rem;">🔐 DPDP Compliant</span>
+        </div>
+      </div>
+
+      <!-- Right: Feature cards -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="why-card" data-aos="fade-left" data-aos-delay="0" style="display:flex;gap:16px;align-items:flex-start;">
+          <div class="why-ico" style="flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><h4 style="margin-bottom:6px;">Trained on Real MSME Data</h4><p>AI models trained and validated on actual Indian MSME transaction patterns — not synthetic data. Edge cases your CA has seen, we've already accounted for.</p></div>
+        </div>
+        <div class="why-card" data-aos="fade-left" data-aos-delay="60" style="display:flex;gap:16px;align-items:flex-start;">
+          <div class="why-ico" style="flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><h4 style="margin-bottom:6px;">CA-Supervised Testing</h4><p>Every workflow, flag, and report output is validated by practising Chartered Accountants. No feature ships until a CA signs off on it.</p></div>
+        </div>
+        <div class="why-card" data-aos="fade-left" data-aos-delay="120" style="display:flex;gap:16px;align-items:flex-start;">
+          <div class="why-ico" style="flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/><line x1="8" y1="17" x2="8" y2="20"/><line x1="16" y1="17" x2="16" y2="20"/></svg></div>
+          <div><h4 style="margin-bottom:6px;">No ERP Dependency</h4><p>Works directly with exported bank statements and ERP files. No mandatory API integration — zero disruption to your existing accounting setup.</p></div>
+        </div>
+        <div class="why-card" data-aos="fade-left" data-aos-delay="180" style="display:flex;gap:16px;align-items:flex-start;">
+          <div class="why-ico" style="flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div><h4 style="margin-bottom:6px;">DPDP Compliant Architecture</h4><p>Designed from day one for India's Digital Personal Data Protection Act. AES-256 encryption at every layer — not retrofitted, built-in from the ground up.</p></div>
+        </div>
+        <div class="why-card" data-aos="fade-left" data-aos-delay="240" style="display:flex;gap:16px;align-items:flex-start;">
+          <div class="why-ico" style="flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div><h4 style="margin-bottom:6px;">Real-Time Anomaly Detection</h4><p>The engine doesn't just match — it reasons. Unusual patterns, duplicate entries, and GST ITC gaps are surfaced automatically before your auditor finds them.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ ROADMAP ══ -->
+<section id="roadmap" class="section-pad" style="background:var(--abyss);">
+  <div class="container">
+    <div style="text-align:center;max-width:580px;margin:0 auto 68px;" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center;display:flex;">12-Month Horizon</span>
+      <h2 class="section-title">What we're<br><span class="g">building next</span></h2>
+    </div>
+    <div class="rm-grid">
+      <div class="rm-card" data-aos="fade-up" data-aos-delay="0"><div class="rm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div><h4>Universal Parser</h4><p>Auto-parse any Indian bank statement — PDF, Excel, or CSV</p></div>
+      <div class="rm-card" data-aos="fade-up" data-aos-delay="60"><div class="rm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><h4>5+ Banks</h4><p>SBI, HDFC, ICICI, Axis, BoB — all major protocols</p></div>
+      <div class="rm-card" data-aos="fade-up" data-aos-delay="120"><div class="rm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><h4>GST/TDS Engine</h4><p>Full GSTR reconciliation, ITC automation, 26AS matching</p></div>
+      <div class="rm-card" data-aos="fade-up" data-aos-delay="180"><div class="rm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>ISO 27001</h4><p>ISO 27001 and CERT-In compliance certification</p></div>
+      <div class="rm-card" data-aos="fade-up" data-aos-delay="240"><div class="rm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h4>National Rollout</h4><p>500+ MSMEs · 50+ CA firms across India</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-band">
+  <div class="container">
+    <div data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center;display:flex;">Get Started</span>
+      <h2 class="section-title">Financial compliance<br><span class="gi">without the complexity.</span></h2>
+      <p class="cta-sub">No mandatory ERP integration. No disruption to existing workflows. Just upload your statements and let Reconciler AI handle the rest.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">Get a Personalised Demo →</a>
+        <a href="demo.html" class="btn btn-glass btn-lg">View Full Dashboard</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="url(#fg1)"/><path d="M10 9h10a7 7 0 0 1 7 7v0a7 7 0 0 1-5 6.7L26 31h-5l-3.8-8H15v8h-5V9z" fill="white" opacity="0.92"/><circle cx="18.5" cy="16.5" r="3.5" fill="url(#fg2)" opacity="0.8"/><defs><linearGradient id="fg1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#00E5C8"/><stop offset="1" stop-color="#1A6EFF"/></linearGradient><linearGradient id="fg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00E5C8"/><stop offset="1" stop-color="#00B8A0"/></linearGradient></defs></svg>
+        </div>
+        <p class="footer-brand-name">Reconciler<span> AI</span></p>
+        <p class="footer-desc">Intelligent financial verification and compliance infrastructure for Indian MSMEs and Chartered Accountants. DPIIT &amp; StartinUP recognised.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="badge bt" style="font-size:0.64rem;padding:4px 10px;">🏛 DPIIT</span>
+          <span class="badge bg" style="font-size:0.64rem;padding:4px 10px;">✦ StartinUP</span>
+        </div>
+      </div>
+      <div class="f-col"><h5>Capabilities</h5><ul class="f-links"><li><a href="#features">Bank Reconciliation</a></li><li><a href="#features">Ledger Matching</a></li><li><a href="#features">GST Compliance</a></li></ul></div>
+      <div class="f-col"><h5>Company</h5><ul class="f-links"><li><a href="#about">About</a></li><li><a href="#why">Why Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Security &amp; Privacy</a></li></ul></div>
+      <div class="f-col">
+        <h5>Contact</h5>
+        <div class="f-contact"><div class="f-contact-ico">📧</div><div><a href="/cdn-cgi/l/email-protection#30535f5e5e555344704255535f5e53595c554251591e535f5d"><span class="__cf_email__" data-cfemail="791a1617171c1a0d390b1c1a16171a10151c0b1810571a1614">[email&#160;protected]</span></a></div></div>
+        <div class="f-contact"><div class="f-contact-ico">📞</div><div><a href="tel:+919990502146">+91 9990502146</a></div></div>
+        <div class="f-contact"><div class="f-contact-ico">📍</div><div>Ghaziabad, Uttar Pradesh, India</div></div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 Reconciler AI &nbsp;·
