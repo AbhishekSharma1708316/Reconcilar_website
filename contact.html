@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Reconciler AI — request access to the future of digital financial compliance.">
+<title>Contact — Reconciler AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/core.css"><link rel="stylesheet" href="css/sections.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const EJS_PUBLIC_KEY="WxI8pdKErb6UQSwl6",EJS_SERVICE_ID="service_383opz7",EJS_TEMPLATE_ID="template_tmf97a1";
+  (function(){if(window.emailjs)emailjs.init({publicKey:EJS_PUBLIC_KEY});})();
+  addEventListener("DOMContentLoaded",function(){
+    var form=document.getElementById("contactForm"),btn=document.getElementById("submitBtn"),btnText=document.getElementById("btnText"),errBox=document.getElementById("formError"),ok=document.getElementById("successBox");
+    form.addEventListener("submit",function(e){e.preventDefault();
+      var user_name=user_name_.value.trim(),user_email=user_email_.value.trim(),user_phone=user_phone_.value.trim(),user_company=user_company_.value.trim(),user_role=user_role_.value,user_interest=user_interest_.value,message=message_.value.trim();
+      errBox.style.display="none";
+      if(!user_name){er("Please enter your full name.");return;}
+      if(!user_email||user_email.indexOf("@")<0){er("Please enter a valid email address.");return;}
+      if(!user_phone){er("Please enter your phone number.");return;}
+      if(!user_company){er("Please enter your company or firm.");return;}
+      if(!user_role){er("Please select your role.");return;}
+      if(!user_interest){er("Please select what you're interested in.");return;}
+      if(!message){er("Please enter a short message.");return;}
+      if(!window.emailjs){er("Connection issue — please email connect@reconcilerai.com directly.");return;}
+      btn.disabled=true;btnText.textContent="Sending…";btn.style.opacity="0.7";
+      emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_ID,{user_name:user_name,user_email:user_email,user_phone:user_phone||"Not provided",user_company:user_company||"Not provided",user_role:user_role,user_interest:user_interest||"Not specified",message:message||"No message"})
+      .then(function(){form.style.display="none";ok.style.display="flex";})
+      .catch(function(err){console.error(err);er("Something went wrong. Please email connect@reconcilerai.com");btn.disabled=false;btnText.textContent="Submit request";btn.style.opacity="1";});
+    });
+    function er(m){errBox.textContent=m;errBox.style.display="block";btn.disabled=false;btnText.textContent="Submit request";btn.style.opacity="1";}
+  });
+</script>
+</head>
+<body>
+<div id="grain"></div>
+<div id="pre"><img id="pre-logo" src="assets/logo_mark.png" alt=""><div class="pm"><span>Reconciler</span></div><div class="pl"></div></div>
+
+<header class="nav scr" id="nav"><div class="nav-in">
+  <a href="index.html" class="brand"><img class="mk-img" src="assets/logo_mark.png" alt="Reconciler AI"><span>Reconciler <span class="ai">AI</span></span></a>
+  <nav class="nav-links"><a href="index.html#capabilities">Capabilities</a><a href="index.html#how">How it works</a><a href="index.html#why">Why us</a><a href="demo.html">Live demo</a></nav>
+  <div class="nav-r"><a href="index.html" class="btn btn-ghost btn-sm">Home</a><a href="#form" class="btn btn-fill btn-sm">Request access</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button></div>
+</div></header>
+<div class="mnav" id="mnav"><a href="index.html#capabilities">Capabilities</a><a href="index.html#how">How it works</a><a href="index.html#why">Why us</a><a href="demo.html">Live demo</a><a href="index.html">Home</a></div>
+
+<section class="phero zone zone-hero" data-tint="8591F2"><div class="wrap">
+  <span class="chip rv" style="margin-bottom:22px;"><span class="d"></span>Get in touch</span>
+  <h1 class="rv d1">Let's <em>talk</em>.</h1>
+  <p class="lead rv d2" style="max-width:540px;margin-top:18px;">Request access, explore a partnership, or ask us anything. We respond within 24 hours.</p>
+</div></section>
+
+<section class="sec-sm zone zone-console" id="form" data-tint="6573E8"><div class="wrap"><div class="cgrid">
+  <div class="fcard rv-l">
+    <h2 class="h2" style="font-size:1.7rem;margin-bottom:6px;">Request access</h2>
+    <p class="muted" style="font-size:0.9rem;margin-bottom:30px;">Fill in your details — we'll be in touch within 24 hours.</p>
+    <div id="formError" class="ferr"></div>
+    <form id="contactForm" novalidate>
+      <div class="frow"><div class="fg"><label>Full name *</label><input id="user_name_" type="text" placeholder="Your full name" required></div><div class="fg"><label>Email address *</label><input id="user_email_" type="email" placeholder="you@company.com" required></div></div>
+      <div class="frow"><div class="fg"><label>Phone *</label><input id="user_phone_" type="tel" placeholder="+91 XXXXXXXXXX" required></div><div class="fg"><label>Company / firm *</label><input id="user_company_" type="text" placeholder="Company or CA firm" required></div></div>
+      <div class="frow"><div class="fg"><label>I am a *</label><select id="user_role_" required><option value="">Select your role</option><option>MSME Owner / Director</option><option>Chartered Accountant</option><option>Finance Professional</option><option>Investor</option><option>Potential Partner</option><option>Other</option></select></div><div class="fg"><label>Interested in *</label><select id="user_interest_" required><option value="">Select interest</option><option>GST &amp; TDS reconciliation</option><option>Financial statements</option><option>Books reconciliation</option><option>Full platform</option><option>Partnership</option></select></div></div>
+      <div class="fg"><label>Message *</label><textarea id="message_" rows="4" placeholder="Tell us a little about your needs…" required></textarea></div>
+      <button type="submit" id="submitBtn" class="btn btn-acc btn-lg" style="width:100%;justify-content:center;"><span id="btnText">Submit request</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </form>
+    <div id="successBox" class="fsuccess"><div class="ic">✓</div><h3>Request received</h3><p>Thank you. We'll reach out within 24 hours.</p></div>
+  </div>
+  <div class="iside rv-r d1">
+    <h3>Contact information</h3>
+    <a class="irow" href="mailto:connect@reconcilerai.com"><span class="ic">@</span><div><div class="l">Email</div><div class="v">connect@reconcilerai.com</div></div></a>
+    <a class="irow" href="tel:+919990502146"><span class="ic">☎</span><div><div class="l">Phone</div><div class="v">+91 9990502146</div></div></a>
+    <div class="irow"><span class="ic">⌖</span><div><div class="l">Location</div><div class="v">Ghaziabad, Uttar Pradesh, India</div></div></div>
+    <div class="irow"><span class="ic">◷</span><div><div class="l">Response time</div><div class="v">Within 24 hours · Mon–Sat</div></div></div>
+    <div class="irecog"><div class="l" style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-3);margin-bottom:12px;">Recognitions</div><div style="display:flex;gap:8px;flex-wrap:wrap;"><span class="chip">DPIIT</span><span class="chip">StartinUP</span><span class="chip">NFRA-aligned</span></div></div>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap"><div class="foot-bot" style="margin-top:0;border-top:none;padding-top:0;justify-content:center;"><span>© 2026 Reconciler AI · Ghaziabad, Uttar Pradesh · connect@reconcilerai.com</span></div></div></footer>
+<script src="js/mesh.js"></script><script src="js/continuum.js"></script><script src="js/app.js"></script>
+</body></html>

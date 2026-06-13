@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Reconciler AI interactive dashboard demo.">
+<title>Live demo — Reconciler AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/core.css"><link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+<canvas id="continuum"></canvas>
+<div id="grain"></div>
+
+<div class="gate zone zone-hero" id="gate"><div class="gate-c"><div class="glow"></div>
+  <img class="lg-img" src="assets/logo_mark.png" alt="">
+  <h1>Dashboard access</h1>
+  <p>This interactive demo is access-protected. Enter the key below, or request one from our team.</p>
+  <input type="password" class="gate-in" id="pwIn" placeholder="Access key" autocomplete="off">
+  <button class="btn btn-acc btn-lg" id="pwGo" style="width:100%;justify-content:center;">Unlock dashboard →</button>
+  <div class="gate-err" id="pwErr"></div>
+  <div class="gate-ft">Need access? <a href="contact.html" style="color:var(--acc-soft);">Contact our team</a> · demo key <b>reconciler2026</b></div>
+</div></div>
+
+<header class="nav scr" id="nav" style="display:none;"><div class="nav-in">
+  <a href="index.html" class="brand"><img class="mk-img" src="assets/logo_mark.png" alt="Reconciler AI"><span>Reconciler <span class="ai">AI</span></span></a>
+  <nav class="nav-links"><a href="index.html#modules">Platform</a><a href="index.html#why">Why us</a><a href="contact.html">Contact</a></nav>
+  <div class="nav-r"><a href="index.html" class="btn btn-ghost btn-sm">Home</a><a href="contact.html" class="btn btn-fill btn-sm">Request a demo</a></div>
+</div></header>
+
+<div class="dash wrap zone zone-console" id="dash" style="display:none;">
+  <div class="dhead">
+    <div><span class="kicker">Interactive demo · representative data</span>
+      <h1 class="display" style="font-size:1.9rem;margin-top:14px;">Financial overview</h1>
+      <p class="muted" style="font-family:var(--mono);font-size:0.8rem;margin-top:5px;">reconciler.ai · 5+ bank formats · Tally Prime · FY 2025–26</p></div>
+    <div class="dtabs" id="dtabs">
+      <div class="dtab act" data-v="ov">Overview</div><div class="dtab" data-v="bk">Reconciliation</div><div class="dtab" data-v="gst">GST</div><div class="dtab" data-v="tds">TDS</div><div class="dtab" data-v="aud">Audit log</div>
+    </div>
+  </div>
+
+  <div class="dv" data-view="ov">
+    <div class="dkpis">
+      <div class="dk"><div class="l">Volume reconciled</div><div class="v" data-to="12.4" data-pre="₹" data-suf=" Cr">₹0</div></div>
+      <div class="dk"><div class="l">Match accuracy</div><div class="v" data-to="96.8" data-suf="%">0%</div></div>
+      <div class="dk"><div class="l">Exceptions</div><div class="v" data-to="47">0</div></div>
+      <div class="dk"><div class="l">DPDP compliance</div><div class="v" data-to="100" data-suf="%">0%</div></div>
+    </div>
+    <div class="dpanel"><div class="dpanel-h">Reconciliation status<span>February 2026</span></div>
+      <table class="dtable"><thead><tr><th>Module</th><th>Entries</th><th>Matched</th><th>Flagged</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Bank — Statement imports</td><td>1,842</td><td>1,795</td><td>47</td><td><span class="st ok">96.8% matched</span></td></tr>
+        <tr><td>Ledger — Tally Prime</td><td>3,847</td><td>3,792</td><td>55</td><td><span class="st ok">98.6% matched</span></td></tr>
+        <tr><td>GST — GSTR-2B vs 3B</td><td>612</td><td>598</td><td>14</td><td><span class="st fl">14 ITC gaps</span></td></tr>
+        <tr><td>TDS — 26AS</td><td>208</td><td>205</td><td>3</td><td><span class="st ok">98.5% matched</span></td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="dv" data-view="bk" style="display:none;">
+    <div class="dkpis">
+      <div class="dk"><div class="l">Statement entries</div><div class="v" data-to="1842">0</div></div>
+      <div class="dk"><div class="l">Credits</div><div class="v" data-to="8.4" data-pre="₹" data-suf=" Cr">₹0</div></div>
+      <div class="dk"><div class="l">Debits</div><div class="v" data-to="4.4" data-pre="₹" data-suf=" Cr">₹0</div></div>
+      <div class="dk"><div class="l">Unreconciled</div><div class="v" data-to="47">0</div></div>
+    </div>
+    <div class="dpanel"><div class="dpanel-h">Transaction log<span>showing 6 of 1,842</span></div>
+      <table class="dtable"><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+        <tr><td>02 Feb</td><td>NEFT · Vendor — Sterling Supplies</td><td>₹1,24,500</td><td><span class="st ok">Matched</span></td></tr>
+        <tr><td>04 Feb</td><td>UPI · Customer receipt — INV-2291</td><td>₹38,200</td><td><span class="st ok">Matched</span></td></tr>
+        <tr><td>07 Feb</td><td>GST ITC mismatch — 2B vs books</td><td>₹92,000</td><td><span class="st fl">Flagged</span></td></tr>
+        <tr><td>09 Feb</td><td>RTGS · Capital equipment — Meera Tools</td><td>₹4,80,000</td><td><span class="st ok">Matched</span></td></tr>
+        <tr><td>11 Feb</td><td>Duplicate entry — TXN-88142</td><td>₹15,750</td><td><span class="st dp">Duplicate</span></td></tr>
+        <tr><td>13 Feb</td><td>TDS 194C — contractor</td><td>₹22,400</td><td><span class="st ok">Matched</span></td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="dv" data-view="gst" style="display:none;">
+    <div class="dkpis">
+      <div class="dk"><div class="l">ITC available (2B)</div><div class="v" data-to="18.6" data-pre="₹" data-suf=" L">₹0</div></div>
+      <div class="dk"><div class="l">ITC claimed (3B)</div><div class="v" data-to="17.7" data-pre="₹" data-suf=" L">₹0</div></div>
+      <div class="dk"><div class="l">Gap flagged</div><div class="v" data-to="92000" data-pre="₹">₹0</div></div>
+      <div class="dk"><div class="l">Reconciled</div><div class="v" data-to="97.7" data-suf="%">0%</div></div>
+    </div>
+    <div class="dpanel"><div class="dpanel-h">GSTR-2B vs 3B<span>Feb 2026</span></div>
+      <table class="dtable"><thead><tr><th>Vendor</th><th>2B value</th><th>3B claimed</th><th>Variance</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Sterling Supplies Pvt Ltd</td><td>₹2,24,000</td><td>₹2,24,000</td><td>₹0</td><td><span class="st ok">Reconciled</span></td></tr>
+        <tr><td>Meera Industrial Tools</td><td>₹86,400</td><td>₹0</td><td>₹86,400</td><td><span class="st fl">ITC gap</span></td></tr>
+        <tr><td>Apex Logistics</td><td>₹41,200</td><td>₹41,200</td><td>₹0</td><td><span class="st ok">Reconciled</span></td></tr>
+        <tr><td>Verma Traders</td><td>₹5,600</td><td>₹0</td><td>₹5,600</td><td><span class="st fl">ITC gap</span></td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="dv" data-view="tds" style="display:none;">
+    <div class="dkpis">
+      <div class="dk"><div class="l">TDS deducted</div><div class="v" data-to="3.2" data-pre="₹" data-suf=" L">₹0</div></div>
+      <div class="dk"><div class="l">26AS matched</div><div class="v" data-to="98.5" data-suf="%">0%</div></div>
+      <div class="dk"><div class="l">Sections</div><div class="v" data-to="6">0</div></div>
+      <div class="dk"><div class="l">Variances</div><div class="v" data-to="3">0</div></div>
+    </div>
+    <div class="dpanel"><div class="dpanel-h">TDS tracker — 26AS<span>FY 2025–26</span></div>
+      <table class="dtable"><thead><tr><th>Section</th><th>Nature</th><th>Deducted</th><th>26AS</th><th>Status</th></tr></thead><tbody>
+        <tr><td>194C</td><td>Contractor payments</td><td>₹22,400</td><td>₹22,400</td><td><span class="st ok">Matched</span></td></tr>
+        <tr><td>194J</td><td>Professional fees</td><td>₹18,000</td><td>₹18,000</td><td><span class="st ok">Matched</span></td></tr>
+        <tr><td>194I</td><td>Rent</td><td>₹12,000</td><td>₹6,400</td><td><span class="st fl">Variance</span></td></tr>
+        <tr><td>194H</td><td>Commission</td><td>₹5,600</td><td>₹5,600</td><td><span class="st ok">Matched</span></td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="dv" data-view="aud" style="display:none;">
+    <div class="dpanel"><div class="dpanel-h">Audit activity log<span>last 7 days</span></div>
+      <table class="dtable"><thead><tr><th>Timestamp</th><th>Action</th><th>Module</th><th>User</th></tr></thead><tbody>
+        <tr><td>14 Feb · 09:42</td><td>Reconciliation run completed</td><td>Bank</td><td>system</td></tr>
+        <tr><td>14 Feb · 09:41</td><td>1,842 entries imported — bank PDF</td><td>Bank</td><td>ca_priya</td></tr>
+        <tr><td>13 Feb · 17:20</td><td>ITC gap flagged — Meera Tools</td><td>GST</td><td>system</td></tr>
+        <tr><td>13 Feb · 16:55</td><td>GSTR-2B sync — 612 records</td><td>GST</td><td>ca_priya</td></tr>
+        <tr><td>12 Feb · 11:08</td><td>Audit report exported (PDF)</td><td>Reports</td><td>admin</td></tr>
+        <tr><td>12 Feb · 10:30</td><td>TDS variance detected — 194I</td><td>TDS</td><td>system</td></tr>
+      </tbody></table></div>
+    <p class="muted" style="text-align:center;font-family:var(--mono);font-size:0.8rem;margin-top:24px;">Representative data · validated under CA supervision</p>
+  </div>
+</div>
+
+<script src="js/mesh.js"></script>
+<script src="js/app.js"></script>
+<script>
+(function(){
+  var KEY="reconciler2026",gate=document.getElementById("gate"),inp=document.getElementById("pwIn"),go=document.getElementById("pwGo"),err=document.getElementById("pwErr"),nav=document.getElementById("nav"),dash=document.getElementById("dash");
+  function count(el){var to=parseFloat(el.dataset.to),pre=el.dataset.pre||"",suf=el.dataset.suf||"",isF=String(to).indexOf(".")>-1,t0=null,dur=1500;
+    function st(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,4),v=e*to;el.textContent=pre+(isF?v.toFixed(1):Math.floor(v).toLocaleString("en-IN"))+suf;if(p<1)requestAnimationFrame(st);else el.textContent=pre+(isF?to.toFixed(1):to.toLocaleString("en-IN"))+suf;}requestAnimationFrame(st);}
+  function unlock(){if(inp.value.trim().toLowerCase()===KEY){gate.style.opacity="0";gate.style.transition="opacity .5s";setTimeout(function(){gate.style.display="none";nav.style.display="flex";dash.style.display="block";document.querySelector('.dv[data-view=ov]').querySelectorAll("[data-to]").forEach(count);},480);}else{err.textContent="Incorrect key. Use the demo key shown below.";inp.value="";inp.focus();}}
+  go.addEventListener("click",unlock);inp.addEventListener("keydown",function(e){if(e.key==="Enter")unlock();});inp.focus();
+  var tabs=document.querySelectorAll(".dtab"),views=document.querySelectorAll(".dv");
+  tabs.forEach(function(t){t.addEventListener("click",function(){tabs.forEach(function(x){x.classList.remove("act");});t.classList.add("act");var v=t.dataset.v;views.forEach(function(vw){vw.style.display=vw.dataset.view===v?"block":"none";});var a=document.querySelector('.dv[data-view='+v+']');if(a)a.querySelectorAll("[data-to]").forEach(count);});});
+})();
+</script>
+</body></html>
